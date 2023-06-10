@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float _powerupSpeed = 3f;
 
+    
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector3.down * _powerupSpeed * Time.deltaTime);
         
+        if(transform.position.y < -6)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            Player player = other.transform.GetComponent<Player>();
+
+            if(player != null)
+            {
+                player.ActivateTripleShot();
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

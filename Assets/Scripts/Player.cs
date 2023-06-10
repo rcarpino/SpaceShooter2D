@@ -91,4 +91,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ActivateTripleShot()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotPowerDownRoutine()); 
+    }
+
+    IEnumerator TripleShotPowerDownRoutine()
+    {
+        while(_isTripleShotActive == true)
+        {
+            yield return new WaitForSeconds(5.0f);
+            _isTripleShotActive = false;
+            
+        }
+    }
+   
+
 }
