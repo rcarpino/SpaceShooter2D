@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
-
+    [SerializeField]
+    private GameObject _explosionPrefab;
     //variable to store audio clip
     [SerializeField]
     private AudioClip _laserSoundClip;
@@ -141,6 +142,7 @@ public class Player : MonoBehaviour
         {
            
             _spawnManager.OnPlayerDeath();
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
