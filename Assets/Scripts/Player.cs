@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisual;
     [SerializeField]
+    private GameObject _rightEngineDamageVisual;
+    [SerializeField]
+    private GameObject _leftEngineDamageVisual;
+    [SerializeField]
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
@@ -101,6 +105,17 @@ public class Player : MonoBehaviour
         }
       
         _lives--;
+        
+        if(_lives == 2)
+        {
+            _rightEngineDamageVisual.SetActive(true);
+        }
+        else if(_lives == 1)
+        {
+            _leftEngineDamageVisual.SetActive(true);
+        }
+        
+
         _uIManager.UpdateLives(_lives);
         
         if(_lives < 1)
